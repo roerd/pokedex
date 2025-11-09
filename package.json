@@ -7,13 +7,15 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/main.js",
-    "dev": "tsc && node dist/main.js"
+    "dev": "tsc && node dist/main.js",
+    "test": "vitest --run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^24.10.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
   }
 }
