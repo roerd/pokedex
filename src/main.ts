@@ -1,8 +1,10 @@
 // repl.js actually refers to repl.ts
-import { startREPL, cleanInput } from "./repl.js";
+import { startREPL, cleanInput, getCommands } from "./repl.js";
 
 function main() {
   const repl = startREPL();
+  const commands = getCommands();
+
   repl.prompt();
 
   repl.on('line', (line: string) => {
@@ -14,7 +16,17 @@ function main() {
     
     const command = words[0].toLowerCase();
 
-    console.log(`Your command was: ${command}\n`);
+    if (commands[command]) {
+      try {
+        commands[command].callback(commands);
+      } catch (error) {
+        console.error(`Error executing command '${command}':`, error);
+      }
+    } else {
+      console.log(`Unknown command: ${command}`);
+    }
+
+    
     repl.prompt();
   });
 }
