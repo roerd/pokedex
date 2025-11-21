@@ -1,5 +1,6 @@
 import { createInterface } from 'node:readline';
 import { commandExit } from './command_exit.js';
+import { commandHelp } from './command_help.js';
 
 export function cleanInput(input: string): string[] {
     return input.split(/\s+/).filter(s => s.length > 0);
@@ -21,11 +22,15 @@ export type CLICommand = {
 
 export function getCommands(): Record<string, CLICommand> {
   return {
+    help: {
+      name: "help",
+      description: "Displays a help message",
+      callback: commandHelp,
+    },
     exit: {
       name: "exit",
-      description: "Exits the pokedex",
+      description: "Exit the Pokedex",
       callback: commandExit,
     },
-    // can add more commands here
   };
 }
