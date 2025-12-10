@@ -1,9 +1,11 @@
 // repl.js actually refers to repl.ts
-import { startREPL, cleanInput, getCommands } from "./repl.js";
+import { cleanInput } from "./repl.js";
+import { initState } from "./state.js";
 
 function main() {
-  const repl = startREPL();
-  const commands = getCommands();
+  const state = initState();
+  const repl = state.interface;
+  const commands = state.commands;
 
   repl.prompt();
 
@@ -18,7 +20,7 @@ function main() {
 
     if (commands[command]) {
       try {
-        commands[command].callback(commands);
+        commands[command].callback(state);
       } catch (error) {
         console.error(`Error executing command '${command}':`, error);
       }
