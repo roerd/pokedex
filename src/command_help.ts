@@ -1,4 +1,4 @@
-import type { CLICommand, State } from "./state.js";
+import type { State } from "./state.js";
 
 export function commandHelp(state: State) {
     console.log("Welcome to the Pokedex!");
