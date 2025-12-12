@@ -1,7 +1,7 @@
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
-  public previous = null;
-  public next = null;
+  public prevLocationsURL = null;
+  public nextLocationsURL = null;
 
   constructor() {}
 
@@ -10,8 +10,8 @@ export class PokeAPI {
       pageURL ? pageURL : `${PokeAPI.baseURL}/location-area/`
     );
     const data = await result.json();
-    this.previous = data.previous;
-    this.next = data.next;
+    this.prevLocationsURL = data.previous;
+    this.nextLocationsURL = data.next;
     return data;
   }
 
