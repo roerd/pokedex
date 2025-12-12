@@ -1,17 +1,17 @@
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
-  public prevLocationsURL = null;
-  public nextLocationsURL = null;
+  public prevLocationsURL = undefined;
+  public nextLocationsURL = undefined;
 
   constructor() {}
 
   async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
     const result = await fetch(
-      pageURL ? pageURL : `${PokeAPI.baseURL}/location-area/`
+      pageURL ?? `${PokeAPI.baseURL}/location-area/`
     );
     const data = await result.json();
-    this.prevLocationsURL = data.previous;
-    this.nextLocationsURL = data.next;
+    this.prevLocationsURL = data.previous ?? undefined;
+    this.nextLocationsURL = data.next ?? undefined;
     return data;
   }
 
