@@ -3,13 +3,13 @@ import { cleanInput } from "./repl.js";
 import { initState } from "./state.js";
 
 function main() {
-  const state = initState();
+  let state = initState();
   const repl = state.interface;
   const commands = state.commands;
 
   repl.prompt();
 
-  repl.on('line', (line: string) => {
+  repl.on('line', async (line: string) => {
     const words = cleanInput(line);
     if (words.length === 0) {
       repl.prompt();
@@ -20,7 +20,7 @@ function main() {
 
     if (commands[command]) {
       try {
-        commands[command].callback(state);
+        state = await commands[command].callback(state);
       } catch (error) {
         console.error(`Error executing command '${command}':`, error);
       }
