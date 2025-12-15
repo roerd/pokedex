@@ -7,6 +7,4 @@ export async function commandHelp(state: State) {
     for (const command of Object.values(state.commands)) {
         console.log(`${command.name}: ${command.description}`);
     }
-
-    return state;
 }

@@ -6,6 +6,4 @@ export async function commandMap(state: State) {
     for (const location of locations.results) {
         console.log(location.name);
     }
-
-    return state;
 }

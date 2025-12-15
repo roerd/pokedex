@@ -3,7 +3,7 @@ import { cleanInput } from "./repl.js";
 import { initState } from "./state.js";
 
 function main() {
-  let state = initState();
+  const state = initState();
   const repl = state.interface;
   const commands = state.commands;
 
@@ -20,7 +20,7 @@ function main() {
 
     if (commands[command]) {
       try {
-        state = await commands[command].callback(state);
+        await commands[command].callback(state, ...words.slice(1));
       } catch (error) {
         console.error(`Error executing command '${command}':`, error);
       }
