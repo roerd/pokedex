@@ -58,5 +58,13 @@ export type Location = {
       url: string;
     };
   }>;
-  pokemon_encounters: Array<unknown>;
+  pokemon_encounters: Array<PokemonEncounter>;
+};
+
+export type PokemonEncounter = {
+  pokemon: {
+    name: string;
+    url: string;
+  };
+  version_details: Array<unknown>;
 };
