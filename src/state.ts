@@ -4,7 +4,7 @@ import { commandMapB } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
 import { commandExit } from './command_exit.js';
 import { commandHelp } from './command_help.js';
-import { PokeAPI } from "./pokeapi.js";
+import { PokeAPI, Pokemon } from "./pokeapi.js";
 
 
 
@@ -18,6 +18,7 @@ export type State = {
   interface: Interface;
   commands: Record<string, CLICommand>;
   pokeapi: PokeAPI;
+  pokedex: Record<string, Pokemon>;
 };
 
 export function initState(): State {
@@ -29,6 +30,7 @@ export function initState(): State {
         }),
         commands: getCommands(),
         pokeapi: new PokeAPI(),
+        pokedex: {},
     };
 }
 
