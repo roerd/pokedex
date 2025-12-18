@@ -46,14 +46,16 @@ export class PokeAPI {
   }
 }
 
+export type NamedAPIResource = {
+  name: string;
+  url: string;
+};
+
 export type ShallowLocations = {
   count: number;
   next: string | null;
   previous: string | null;
-  results: Array<{
-    name: string;
-    url: string;
-  }>;
+  results: Array<NamedAPIResource>;
 };
 
 export type Location = {
@@ -61,26 +63,28 @@ export type Location = {
   name: string;
   game_index: number;
   encounter_method_rates: Array<unknown>;
-  location: {
-    name: string;
-    url: string;
-  };
+  location: NamedAPIResource;
   names: Array<{
     name: string;
-    language: {
-      name: string;
-      url: string;
-    };
+    language: NamedAPIResource;
   }>;
   pokemon_encounters: Array<PokemonEncounter>;
 };
 
 export type PokemonEncounter = {
-  pokemon: {
-    name: string;
-    url: string;
-  };
+  pokemon: NamedAPIResource;
   version_details: Array<unknown>;
+};
+
+export type PokemonStat = {
+  base_stat: number;
+  effort: number;
+  stat: NamedAPIResource;
+};
+
+export type PokemonType = {
+  slot: number;
+  type: NamedAPIResource;
 };
 
 export type Pokemon = {
@@ -99,12 +103,9 @@ export type Pokemon = {
   moves: Array<unknown>;
   sprites: Record<string, string | null>;
   cries: Record<string, string>;
-  species: {
-    name: string;
-    url: string;
-  };
-  stats: Array<unknown>;
-  types: Array<unknown>;
+  species: NamedAPIResource;
+  stats: Array<PokemonStat>;
+  types: Array<PokemonType>;
   past_types: Array<unknown>;
   past_abilities: Array<unknown>;
 };
